@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="keywords" content="william lu, dawillu">
+        <meta name="twitter:site" content="@dawillu">
+        <meta name="twitter:creator" content="@dawillu">
+        <link rel="stylesheet" href="Styles/style.css">
+        <link rel="manifest" href="manifest.json">
+        <title>Tic Tac Toe</title>
+</head>
+<body>
+    <div id="loader-container">
+        <div id="loader">
+            <video id="video" muted>
+                <source src="Assets/logo.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="colortheme" onclick="SetColor()">
+            <img id="theme_cross" src="Assets/cross.png" alt="Cross Theme">
+            <img id="theme_circle" src="Assets/circle.png" alt="Circle Theme">
+        </div>
+
+        <div class="container logo">
+            <img id="logo" src="Assets/logo.png" alt="Game Logo">
+        </div>
+        
+        <div class="container btn">
+            <button class="button" onmousedown="changeMode.play()" onclick="TwoPlayers()">Play with a Friend :)</button>
+            <button class="button" onmousedown="changeMode.play()" onclick="Bot()">Got No Friends :(</button>
+        </div>
+
+        <div class="desc">
+            <div id="mode" class="container">&#8206;</div>
+            <div id="turn" class="container">&#8206;</div>
+        </div>
+        
+        <div class="field">
+            <div id="00" class="cell" onclick="PlayerMove(id)"></div>
+            <div id="01" class="cell" onclick="PlayerMove(id)"></div>
+            <div id="02" class="cell" onclick="PlayerMove(id)"></div>
+            <div id="03" class="cell" onclick="PlayerMove(id)"></div>
+            <div id="04" class="cell" onclick="PlayerMove(id)"></div>
+            <div id="05" class="cell" onclick="PlayerMove(id)"></div>
+            <div id="06" class="cell" onclick="PlayerMove(id)"></div>
+            <div id="07" class="cell" onclick="PlayerMove(id)"></div>
+            <div id="08" class="cell" onclick="PlayerMove(id)"></div>
+        </div>
+    </div>
+
+    <script src="Scripts/script.js"></script>
+</body>
+</html>
