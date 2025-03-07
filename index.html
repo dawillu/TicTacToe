@@ -5,9 +5,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <meta name="keywords" content="william lu, dawillu">
-        <meta name="twitter:site" content="@dawillu">
-        <meta name="twitter:creator" content="@dawillu">
+    
+        <!-- Mobile Web App Meta Tags -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <link rel="stylesheet" href="Styles/style.css">
         <link rel="manifest" href="manifest.json">
         <title>Tic Tac Toe</title>
@@ -15,7 +17,7 @@
 <body>
     <div id="loader-container">
         <div id="loader">
-            <video id="video" muted>
+            <video id="video" autoplay muted playsinline>
                 <source src="Assets/logo.mp4" type="video/mp4">
             </video>
         </div>
@@ -23,8 +25,10 @@
 
     <div id="content">
         <div class="colortheme" onclick="SetColor()">
-            <img id="theme_cross" src="Assets/cross.png" alt="Cross Theme">
-            <img id="theme_circle" src="Assets/circle.png" alt="Circle Theme">
+            <div>
+                <img id="theme_cross" src="Assets/cross.png" alt="Cross Theme">
+                <img id="theme_circle" src="Assets/circle.png" alt="Circle Theme">
+            </div>
         </div>
 
         <div class="container logo">
@@ -32,8 +36,8 @@
         </div>
         
         <div class="container btn">
-            <button class="button" onmousedown="changeMode.play()" onclick="TwoPlayers()">Play with a Friend :)</button>
-            <button class="button" onmousedown="changeMode.play()" onclick="Bot()">Got No Friends :(</button>
+            <button class="button" onmousedown="changeMode.play()" onclick="TwoPlayers()">play with a friend</button>
+            <button class="button" onmousedown="changeMode.play()" onclick="Bot()">got no friend</button>
         </div>
 
         <div class="desc">

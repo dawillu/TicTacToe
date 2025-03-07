@@ -4,8 +4,6 @@
     "description": "A simple Tic Tac Toe game.",
     "start_url": "index.html",
     "display": "standalone",
-    "background_color": "#e1f5ec",
-    "theme_color": "#9ebbae",
     "icons": [
       {
         "src": "Assets/icon.png",

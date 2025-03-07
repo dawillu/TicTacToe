@@ -7,20 +7,20 @@ window.onload = function () {
 
     setTimeout(function () {
         if (loaderContainer) {
-            loaderContainer.classList.add('hide');
             setTimeout(function () {
                 loaderContainer.style.display = 'none';
-            }, 500);
+            }, 600);
         }
 
         if (content) {
             content.style.display = 'block';
             setTimeout(function () {
                 content.classList.add('show');
-            }, 600);
+            }, 700);
         }
     }, 2000);
 };
+
 
 // Video auto-play when visible
 document.addEventListener("DOMContentLoaded", function () {
@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 let xs = [], os = []; // Track moves
 let is_end = false, is_start = false;
 let two_player_mode = false;
+let bot_mode = false;
 let two_player_turn = 1;
 
 const CROSS = "Assets/cross.png";
@@ -71,11 +72,13 @@ function TwoPlayers() {
     Clear();
     mode.innerHTML = "you are against your friend, have fun!";
     two_player_mode = true;
+    bot_mode = false;
 }
 function Bot() {
     Clear();
     mode.innerHTML = "no worries, you are against an AI, have fun!";
     two_player_mode = false;
+    bot_mode = true;
 }
 
 // Game Logic (Minimax, Player Moves, etc.)
@@ -172,14 +175,14 @@ function getBestMove(board) {
 
 // Bot move with Minimax Algorithm
 function PcMove() {
-    if (!two_player_mode) {
+    if (bot_mode) {
         let board = [...Array(9).keys()].map(i => {
             if (xs.includes(`0${i}`)) return 'X';
             if (os.includes(`0${i}`)) return 'O';
             return null;
         });
 
-        let pos = getBestMove(board); // Find best move for AI using Minimax
+        let pos = getBestMove(board);
 
         if (pos !== null) {
             PutSign(CIRCLE, os, `0${pos}`);
@@ -199,7 +202,6 @@ let put = new Audio("Assets/Sounds/put.mp3");
 let changeMode = new Audio("Assets/Sounds/changemode.mp3");
 let changecolor = new Audio("Assets/Sounds/colorchange.mp3");
 let error = new Audio("Assets/Sounds/wrong.mp3");
-
 
 // Preload sounds
 [put, changeMode, changecolor, error].forEach(sound => sound.preload = "auto");
@@ -245,10 +247,8 @@ function blinkModeText() {
 // Player move
 function PlayerMove(pos) {
     if (!is_start) {
-        if (isSound) {
-            error.play();
-            blinkModeText();  // Trigger the blink effect
-        }
+        if (isSound) error.play();
+        blinkModeText();
         mode.innerHTML = "choose the gamemode first";
         return;
     }
@@ -262,11 +262,11 @@ function PlayerMove(pos) {
             updateTurnDisplay(CROSS);
             PutSign(CIRCLE, os, pos);
         }
-    } else {
+    } else if (bot_mode) {
         if (xs.length > os.length) return;
         updateTurnDisplay(CIRCLE);
         PutSign(CROSS, xs, pos);
-        if (!CheckWin(xs)) setTimeout(PcMove, 500);
+        if (!CheckWin(xs)) setTimeout(PcMove, 700);
     }
 
     if (CheckWin(xs)) mode.innerHTML = "player X won";
@@ -285,7 +285,7 @@ function PutSign(signType, signArray, pos) {
     img.setAttribute("style", signType === CIRCLE ? CIRCLEcolor : CROSScolor);
     document.getElementById(pos).appendChild(img);
     signArray.push(pos);
-    if (isSound) put.play();
+    put.play();
 }
 
 // Check win condition
